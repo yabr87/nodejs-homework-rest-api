@@ -1,6 +1,6 @@
 const Jimp = require('jimp');
 const fs = require('fs/promises');
-const { HttpError } = require('./');
+const HttpError = require('./HttpError');
 
 async function resizeImage(
   tempFilePath,

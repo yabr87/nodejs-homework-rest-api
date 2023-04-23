@@ -3,7 +3,6 @@ const path = require('path');
 const { HttpError } = require('../helpers');
 
 const tmpDir = path.join(__dirname, '../../', 'tmp');
-console.log(tmpDir);
 
 const multerConfig = multer.diskStorage({
   destination: tmpDir,
