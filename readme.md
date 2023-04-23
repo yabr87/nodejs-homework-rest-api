@@ -45,6 +45,10 @@
 <br>
 <br>
 
+`PATCH` /api/users/avatars - Оновити аватарку користувача: потрібно прикріпити заголовок `authorization: Bearer token` та body в форматі form-data передати ключ `avatar` та файл. Доступні формати .png .jpg .jpeg.
+<br>
+<br>
+
 `PATCH` /api/users/subscription - Оновити підписку користувача: потрібно прикріпити заголовок `authorization: Bearer token` та body в форматі JSON. доступні підписки 'starter'- за замовчуванням, 'pro', 'business'
 
 ```json

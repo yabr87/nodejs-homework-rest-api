@@ -4,15 +4,13 @@ const checkContactExists = require('../utils/checkContactExists');
 
 const getContactsController = async (req, res) => {
   const { _id: owner } = req.user;
-  const { page = 1, limit = 10, favorite = undefined } = req.query;
+  const { page = 1, limit = 10, favorite } = req.query;
   const skip = (page - 1) * limit;
 
-  /// реалізований пошук по  &favorite=true та false здається працює.
   const filter = { owner };
-  if (favorite) {
+  if ('favorite' in req.query) {
     filter.favorite = favorite;
   }
-  /// лишіть якийсь коментар, а то я не впевнений в цьому рішенні.
 
   const contacts = await Contact.find(filter, '-createdAt -updatedAt', {
     skip,
