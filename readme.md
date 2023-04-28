@@ -12,7 +12,7 @@
 
 > ### User:
 
-`POST` /api/users/register - Створити нового користувача. Відправляємо body в форматі JSON. Мінімальна кількість символів пароля 6.
+`POST` /api/users/register - Створити нового користувача. Відправляємо body в форматі JSON. Мінімальна кількість символів пароля 6. На вказаний email приходить лист з посиланням для верифікації пошти.
 
 ```json
 {
@@ -25,7 +25,7 @@
 <br>
 <br>
 
-`POST` /api/users/login - Увійти. Відправляємо body в форматі JSON.
+`POST` /api/users/login - Увійти. Відправляємо body в форматі JSON. Якщо email не верифікований увійти не можливо.
 
 ```json
 {
@@ -54,6 +54,33 @@
 ```json
 {
   "subscription": "business"
+}
+```
+
+<br>
+<br>
+
+`GET` /api/users/verify:verificationToken - Верифікація користувача: якщо все добре приходить відповідь.
+
+```json
+{
+  "message": "Verification successful",
+  "user": {
+    "name": "user name",
+    "email": "usertest@usermail.com"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NGJkMmZlNGM4YzU2M2MwNjM3YjU2YyIsImlhdCI6MTY4MjY5MTExMSwiZXhwIjoxNjgyNzczOTExfQ.wQ2j6gqEgEbZbrPz9aNrkuKROT2NjZSAfUjWzhszIjc"
+}
+```
+
+<br>
+<br>
+
+`PATCH` /api/users/verify - повторно відправити листа для верифікації: потрібно прикріпити body в форматі JSON.
+
+```json
+{
+  "email": "usertest@usermail.com"
 }
 ```
 
