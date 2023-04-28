@@ -6,6 +6,7 @@ const {
   userLoginJoiSchema,
   userRegisterJoiSchema,
   updateSubscriptionSchema,
+  emailJoiSchema,
 } = require('../../utils/validation/userValidationSchemas');
 
 const {
@@ -15,6 +16,8 @@ const {
   getCurrent,
   updateSubscription,
   updateAvatar,
+  verify,
+  resendVerifyEmail,
 } = require('../../controllers/authControllers');
 
 const router = Router();
@@ -30,5 +33,7 @@ router.patch(
   updateSubscription
 );
 router.patch('/avatars', authenticate, upload.single('avatar'), updateAvatar);
+router.get('/verify/:verificationToken', verify);
+router.post('/verify', validateBody(emailJoiSchema), resendVerifyEmail);
 
 module.exports = router;
